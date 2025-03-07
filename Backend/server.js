@@ -9,14 +9,23 @@ connectDB();
 const PORT = process.env.PORT ;
 app.use(express.json());
 app.use(cookieParser());
-app.use(cors(
-    {
-        origin:[ process.env.CLIENT_URL,"https://web-chat-sandy.vercel.app/"],
-        credentials: true,
-        methods: ["GET", "POST", "PUT", "DELETE"],
-        allowedHeaders: ["Content-Type", "Authorization"],
-    }
-))
+const allowedOrigins = [
+    process.env.CLIENT_URL,  
+    "https://web-chat-sandy.vercel.app/"
+];
+
+app.use(cors({
+    origin: function (origin, callback) {
+        if (!origin || allowedOrigins.includes(origin)) {
+            callback(null, true);
+        } else {
+            callback(new Error("Not allowed by CORS"));
+        }
+    },
+    credentials: true,
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    allowedHeaders: ["Content-Type", "Authorization"],
+}));
 
 
 
