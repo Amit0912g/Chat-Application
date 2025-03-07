@@ -39,7 +39,7 @@ app.use("/api/v1/user",userRoutes)
 import {errorMiddleware} from './middlewares/error.middleware.js';
 app.use(errorMiddleware);
 
-server.listen(PORT,(err)=>{
+server.listen(allowedOrigins,(err)=>{
     if(err){
         console.log(err)
     }else{
