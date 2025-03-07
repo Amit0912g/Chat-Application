@@ -6,12 +6,12 @@ import cors from 'cors';
 
 connectDB();
 
-const PORT = process.env.PORT || 7000;
+const PORT = process.env.PORT ;
 app.use(express.json());
 app.use(cookieParser());
 app.use(cors(
     {
-        origin: process.env.CLIENT_URL,
+        origin:[ process.env.CLIENT_URL,"https://web-chat-sandy.vercel.app/"],
         credentials: true,
         methods: ["GET", "POST", "PUT", "DELETE"],
         allowedHeaders: ["Content-Type", "Authorization"],
