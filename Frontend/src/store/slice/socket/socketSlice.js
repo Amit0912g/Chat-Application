@@ -14,7 +14,8 @@ reducers:{
     const socket = io(import.meta.env.VITE_DB_ORIGIN,{
         query:{
             userId:action?.payload
-        }
+        },
+        transports: ["websocket"],
     })
     state.socket=socket
 
