@@ -3,15 +3,16 @@ import express from 'express';
 import {connectDB} from './db/connect1.js';
 import cookieParser from 'cookie-parser';
 import cors from 'cors';
+import dotenv from "dotenv";
 
+dotenv.config();
 connectDB();
-
 const PORT = process.env.PORT ;
 app.use(express.json());
 app.use(cookieParser());
 const allowedOrigins = [
-    process.env.CLIENT_URL,  
-    "https://web-chat-sandy.vercel.app/"
+   process.env.CLIENT_URL,  
+    "https://web-chat-sandy.vercel.app"
 ];
 
 app.use(cors({
